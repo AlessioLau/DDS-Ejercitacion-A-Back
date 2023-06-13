@@ -18,6 +18,9 @@ app.use(cors());
 const routeArticulos = require('./routes/articulos');
 app.use('/', routeArticulos);
 
+const clientesRouter = require('./routes/clientes');
+app.use('/', clientesRouter);
+
 // Inicio del servidor
 const port = 4000;
 app.listen(port, () => {

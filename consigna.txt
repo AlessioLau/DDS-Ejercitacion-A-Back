@@ -1,0 +1,35 @@
+Desarrollo del  back:  se deberá agregar una funcionalidad de consulta para un recurso nuevo “clientes”
+Desarrollar el código para conectar con la BD, crear la tabla si no existe e insertar los valores asignados. 
+En el archivo script.sql (que está en la raíz del proyecto) están los script sql necesarios.
+Crear el modelo de sequelize que mapee la tabla clientes, la cual tiene la siguiente estructura:
+CREATE table clientes( 
+              IdCliente INTEGER PRIMARY KEY AUTOINCREMENT
+            , ApellidoYNombre TEXT NOT NULL UNIQUE
+            , DNI INTEGER NOT NULL
+            );
+
+Programar para la ruta clientes lo siguiente:
+Un endpoint Clientes que mediante el verbo/metoto GET  reciba un  parámetro:  ApellidoYNombre y utilizando el model 
+ya desarrollado recupere los registros filtrando por el parámetro recibido.  Deberá devolver todos los registros en 
+cuyo campo ApellidoYNombre contenga el valor del parámetro recibido. Devolver todos los campos de la tabla
+La aplicación deberá registrar como middleware un router con la ruta “/api/clientes”. 
+
+Pruebe las siguientes url desde el browser:
+http://localhost:4000/api/clientes
+				Debe devolver todos los registros
+http://localhost:4000/api/clientes?ApellidoYNombre=AGUIRRE
+Debe devolver los registros que contengan “AGUIRRE”
+
+
+1° modificar BD
+en archivo sqlite-init.js:
+crear 2 await db.run uno con los encabezados de la tabla y otro con las filas a insertar
+
+en archivo sequelize-init-js:
+crear un const clientes = sequelize.define() con los atributos correspondientes
+exportar al final en module.exports = {}
+
+2° crear clientes.js
+renegar para crear la logica de parametros con req.query
+
+3° agregar ruta a index.js
